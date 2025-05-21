@@ -1,95 +1,183 @@
- <style>
-    body {
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       overflow: hidden;
-      background: linear-gradient(to bottom, #87CEEB, #f0f0f0);
+      font-family: sans-serif;
     }
+
     .cielo {
-      position: absolute;
-      width: 100%;
-      height: 60%;
-      background: linear-gradient(to bottom, #87CEEB, #f0f0f0);
+      background: linear-gradient(#87CEEB, #E0F7FA);
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
     }
-    .tierra {
+
+    .sol {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #FFD700, #FFA500);
+      border-radius: 50%;
+      position: absolute;
+      top: 20px;
+      left: 50px;
+      animation: moverSol 2s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes moverSol {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .nube {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      z-index: 2;
+      animation: moverNube 20s linear infinite;
+    }
+
+    .nube::before,
+    .nube::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .nube::before {
+      width: 50px;
+      height: 50px;
+      top: -20px;
+      left: 10px;
+    }
+
+    .nube::after {
+      width: 40px;
+      height: 40px;
+      top: -10px;
+      left: 40px;
+    }
+
+    .nube1 {
+      top: 100px;
+      left: -200px;
+      width: 80px;
+      height: 40px;
+      animation-delay: 0s;
+    }
+
+    .nube2 {
+      top: 150px;
+      left: -300px;
+      width: 100px;
+      height: 50px;
+      animation-delay: 5s;
+    }
+
+    .nube3 {
+      top: 80px;
+      left: -400px;
+      width: 60px;
+      height: 30px;
+      animation-delay: 10s;
+    }
+
+    @keyframes moverNube {
+      0% { left: -200px; }
+      100% { left: 110%; }
+    }
+
+    .carretera {
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 40%;
-      background: #228B22;
+      height: 150px;
+      background: #555;
+      z-index: 3;
     }
-    .sol {
+
+    .lineas {
       position: absolute;
-      top: 10%;
-      left: 80%;
-      width: 100px;
-      height: 100px;
-      background: #FFD700;
-      border-radius: 50%;
-      animation: girar 20s linear infinite;
-    }
-    @keyframes girar {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-    .nube {
-      position: absolute;
-      top: 20%;
-      width: 200px;
-      height: 100px;
-      background: #fff;
-      border-radius: 50px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      animation: moverNube 30s linear infinite;
-    }
-    .nube:nth-child(2) {
-      top: 30%;
-      left: 50%;
-      width: 250px;
-      height: 120px;
-      animation-duration: 35s;
-    }
-    .nube:nth-child(3) {
-      top: 40%;
-      left: 70%;
-      width: 180px;
-      height: 90px;
-      animation-duration: 25s;
-    }
-    @keyframes moverNube {
-      from {
-        left: -200px;
-      }
-      to {
-        left: 100%;
-      }
-    }
-    .carretera {
-      position: absolute;
-      bottom: 10%;
+      top: 50%;
+      left: 0;
       width: 100%;
-      height: 100px;
-      background: #333;
+      height: 10px;
+      background: repeating-linear-gradient(
+        to right,
+        #fff 0px,
+        #fff 40px,
+        transparent 40px,
+        transparent 80px
+      );
     }
+
     .auto {
       position: absolute;
-      bottom: 15%;
-      left: -100px;
+      bottom: 120px;
       width: 100px;
       height: 50px;
-      background: #FF4500;
+      background: red;
       border-radius: 10px;
-      animation: moverAuto 10s linear infinite;
+      animation: moverAuto 5s linear infinite;
+      z-index: 4;
     }
+
+    .auto::before,
+    .auto::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      width: 20px;
+      height: 20px;
+      background: black;
+      border-radius: 50%;
+    }
+
+    .auto::before {
+      left: 10px;
+    }
+
+    .auto::after {
+      right: 10px;
+    }
+
     @keyframes moverAuto {
-      from {
-        left: -100px;
-      }
-      to {
-        left: 100%;
-      }
+      0% { left: -120px; }
+      100% { left: 110%; }
     }
-  </style>
+
+    .arbol {
+      position: absolute;
+      bottom: 150px;
+      width: 30px;
+      height: 60px;
+      background: sienna;
+      z-index: 3;
+    }
+
+    .arbol::after {
+      content: "";
+      position: absolute;
+      bottom: 40px;
+      left: -20px;
+      width: 70px;
+      height: 70px;
+      background: green;
+      border-radius: 50%;
+    }
+
+    /* Árboles en distintas posiciones */
+    .arbol1 { left: 100px; }
+    .arbol2 { left: 400px; }
+    .arbol3 { left: 700px; }
+    .arbol4 { left: 1000px; }
+
